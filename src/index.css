@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+body{
+  background-color: #fcf9f7;
+  font-family: 'RHT-Regular';
+}
+
+@font-face {
+  font-family: "RHT-Regular";
+  src: url('/RedHatText-Regular.ttf');
+}
+@font-face {
+  font-family: "RHT-Bold";
+  src: url('/RedHatText-Bold.ttf');
+}
+@font-face {
+  font-family: "RHT-SemiBold";
+  src: url('/RedHatText-SemiBold.ttf');
+}
+
+@theme{
+  --font-rht-regular:'RHT-Regular';
+  --font-rht-bold:'RHT-Bold';
+  --font-rht-semibold: 'RHT-SemiBold';
+}
