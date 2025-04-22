@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductList from './components/productList/ProductList'
 import Cart from './components/cart/Cart'
+import { CartContextProvider } from './context/CartContext'
 
 const App = () => {
+  const [addedProduct, setAddedProduct]= useState([]);
+
+  const add=(name, price, quantity, value)=>{
+    if(value === 'increase'){
+      const answer= addedProduct.find((pro)=> pro.name == name);
+      if(answer){
+        setAddedProduct((prev)=> prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity+1}: pro))
+      }else{
+        setAddedProduct((prev)=> 
+          [...prev,{"name":name, "price":price, "quantity": quantity+1}])
+      }
+    }else if (value === 'decrease'){
+      const answer= addedProduct.find((pro)=> pro.name == name);
+      if(answer){
+        setAddedProduct((prev)=> prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity-1}: pro))
+      }
+    }
+  };
+
+  const remove=(name)=>{
+    console.log(name);
+    
+    const answer= addedProduct.find((pro)=> pro.name == name);
+    if(answer){
+      console.log('find');
+      
+      addedProduct.pop(name);
+      console.log(addedProduct);
+      
+    }
+  };
+
   return (
+    <CartContextProvider value={{add, remove, addedProduct}}>
     <div className='w-[80%] pt-15 mx-auto flex gap-7'>
       <div className='w-[70%]'>
       <ProductList/>
@@ -12,6 +46,7 @@ const App = () => {
       <Cart/>
       </div>
     </div>
+    </CartContextProvider>
   )
 }
 
