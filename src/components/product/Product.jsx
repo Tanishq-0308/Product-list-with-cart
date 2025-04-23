@@ -4,30 +4,31 @@ import useCartStore from '../../context/CartContext';
 import decrement from '../../../assets/images/icon-decrement-quantity.svg';
 import increment from '../../../assets/images/icon-increment-quantity.svg';
 
-  const Product = ({image, price, category, name, quantity}) => {
-    const {add, remove} = useCartStore();
+  const Product = ({image, price, category, name,}) => {
+    const {add, remove, addedProduct} = useCartStore();
+    const product = addedProduct.find((pro)=> pro.name ===  name);
     const [showCounter, setShowCounter]= useState(true);
-    const [counter, setCounter]=useState(quantity);
+    const counter = product ? product.quantity : 0;
+
+
     const showButton=()=>{
-      // console.log(counter);
-      add(name, price, quantity, 'increase');
+      add(name, price, 'increase');
       setShowCounter(false);
-      setCounter(prev=> prev+1);
-      // console.log(counter);
-      
     }
 
     const decrease =()=>{
       if(counter > 1){
-        add(name, price, quantity, 'decrease');
-        setCounter(prev=>prev-1);
+        add(name, price, 'decrease');
       }else if (counter === 1){
         remove(name);
-        setCounter(0);
         setShowCounter(true);
       }
-
     }
+    useEffect(()=>{
+      if(counter === 0){
+        setShowCounter(true);
+      }
+    },[counter]);
 
   return (
     <div>
@@ -51,7 +52,7 @@ import increment from '../../../assets/images/icon-increment-quantity.svg';
       </div>
       <p className='text-[#ad8985] text-[14px]'>{category}</p>
       <p className='font-rht-bold'>{name}</p>
-      <p className='text-[#af452a] font-rht-semibold'>₹{price}</p>
+      <p className='text-[#af452a] font-rht-semibold'>${price}</p>
     </div>
   )
 }

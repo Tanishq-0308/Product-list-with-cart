@@ -6,7 +6,7 @@ import { CartContextProvider } from './context/CartContext'
 const App = () => {
   const [addedProduct, setAddedProduct]= useState([]);
 
-  const add=(name, price, quantity, value)=>{
+  const add=(name, price, value)=>{
     const answer= addedProduct.find((pro)=> pro.name == name);
 
     if(value === 'increase'){
