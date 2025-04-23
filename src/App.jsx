@@ -7,33 +7,29 @@ const App = () => {
   const [addedProduct, setAddedProduct]= useState([]);
 
   const add=(name, price, quantity, value)=>{
+    const answer= addedProduct.find((pro)=> pro.name == name);
+
     if(value === 'increase'){
-      const answer= addedProduct.find((pro)=> pro.name == name);
       if(answer){
-        setAddedProduct((prev)=> prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity+1}: pro))
+        setAddedProduct((prev)=> 
+          prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity+1}: pro
+          )
+        );
       }else{
         setAddedProduct((prev)=> 
-          [...prev,{"name":name, "price":price, "quantity": quantity+1}])
+          [...prev,{"name":name, "price":price, "quantity":1}
+          ]);
       }
-    }else if (value === 'decrease'){
-      const answer= addedProduct.find((pro)=> pro.name == name);
-      if(answer){
-        setAddedProduct((prev)=> prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity-1}: pro))
-      }
+    }else if (value === 'decrease' && answer){
+        setAddedProduct((prev)=> 
+          prev.map(pro=> pro.name === name ? {...pro, quantity:pro.quantity-1}: pro
+          )
+      );
     }
   };
 
   const remove=(name)=>{
-    console.log(name);
-    
-    const answer= addedProduct.find((pro)=> pro.name == name);
-    if(answer){
-      console.log('find');
-      
-      addedProduct.pop(name);
-      console.log(addedProduct);
-      
-    }
+    setAddedProduct((prev) => prev.filter(pro => pro.name !== name));
   };
 
   return (

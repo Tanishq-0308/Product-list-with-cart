@@ -18,22 +18,17 @@ import increment from '../../../assets/images/icon-increment-quantity.svg';
     }
 
     const decrease =()=>{
-      console.log(counter);
-      
       if(counter > 1){
         add(name, price, quantity, 'decrease');
         setCounter(prev=>prev-1);
-      }else if (counter ==1){
-        console.log('les');
-        
+      }else if (counter === 1){
         remove(name);
+        setCounter(0);
+        setShowCounter(true);
       }
 
     }
 
-    useEffect(()=>{
-      setCounter(counter);
-    },[counter])
   return (
     <div>
       <div className='relative'>
