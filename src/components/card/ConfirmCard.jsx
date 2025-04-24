@@ -1,4 +1,4 @@
-import confirmed from "../../../assets/images/icon-order-confirmed.svg";
+import confirmed from "/assets/images/icon-order-confirmed.svg";
 import useCartStore from "../../context/CartContext";
 
 const ConfirmCard = ({product, amount, handleOrder}) => {

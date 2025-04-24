@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import cartIcon from '../../../assets/images/icon-add-to-cart.svg';
+import cartIcon from '/assets/images/icon-add-to-cart.svg';
 import useCartStore from '../../context/CartContext';
-import decrement from '../../../assets/images/icon-decrement-quantity.svg';
-import increment from '../../../assets/images/icon-increment-quantity.svg';
+import decrement from '/assets/images/icon-decrement-quantity.svg';
+import increment from '/assets/images/icon-increment-quantity.svg';
 
   const Product = ({image, price, category, name, thumbnail, productdetail}) => {
     const {add, remove, addedProduct} = useCartStore();

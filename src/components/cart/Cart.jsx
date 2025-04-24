@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import emptyCartImmage from "../../../assets/images/illustration-empty-cart.svg";
+import emptyCartImmage from "/assets/images/illustration-empty-cart.svg";
 import useCartStore from "../../context/CartContext";
-import removeImg from "../../../assets/images/icon-remove-item.svg";
-import carbonNeutral from "../../../assets/images/icon-carbon-neutral.svg";
+import removeImg from "/assets/images/icon-remove-item.svg";
+import carbonNeutral from "/assets/images/icon-carbon-neutral.svg";
 import ConfirmCard from "../card/ConfirmCard";
 
 const Cart = () => {
