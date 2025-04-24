@@ -21,7 +21,7 @@ const ConfirmCard = ({product, amount, handleOrder}) => {
                 <div className="flex justify-between items-center my-7">
                   <div className="flex gap-3">
                     <div>
-                      <img src={pro.productDetail.image.thumbnail} alt="thumbnail" className="h-14 rounded-lg"/>
+                      <img src={pro.productDetail.image.thumbnail} alt="thumbnail" className="h-14 rounded-lg" loading="lazy"/>
                     </div>
                     <div className="">
                       <h1 className="mb-1.5 font-rht-semibold text-[#260f08]">{pro.name}</h1>

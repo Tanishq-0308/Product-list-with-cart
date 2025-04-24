@@ -33,7 +33,7 @@ import increment from '/assets/images/icon-increment-quantity.svg';
   return (
     <div>
       <div className='relative'>
-      <img src={image} alt="image" className={`h-[13.75rem] relative w-full rounded-2xl mb-7 object-cover ${!showCounter ? 'ring-2 ring-[#c73a0f]': ''} `}/>
+      <img src={image} loading='lazy' alt="image" className={`h-[13.75rem] relative w-full rounded-2xl mb-7 object-cover ${!showCounter ? 'ring-2 ring-[#c73a0f]': ''} `}/>
       {
         showCounter ? 
       <button onClick={showButton} className='flex items-center justify-center gap-2 absolute bg-white left-1/2 -translate-x-1/2 -bottom-4 border border-amber-900 px-6 py-2 rounded-3xl w-[60%]'>
