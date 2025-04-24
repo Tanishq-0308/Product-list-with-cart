@@ -6,7 +6,7 @@ import { CartContextProvider } from './context/CartContext'
 const App = () => {
   const [addedProduct, setAddedProduct]= useState([]);
 
-  const add=(name, price, value)=>{
+  const add=(name, price, productdetail,  value)=>{
     const answer= addedProduct.find((pro)=> pro.name == name);
 
     if(value === 'increase'){
@@ -17,7 +17,7 @@ const App = () => {
         );
       }else{
         setAddedProduct((prev)=> 
-          [...prev,{"name":name, "price":price, "quantity":1}
+          [...prev,{"name":name, "price":price, "quantity":1, "productDetail": productdetail}
           ]);
       }
     }else if (value === 'decrease' && answer){
@@ -32,13 +32,17 @@ const App = () => {
     setAddedProduct((prev) => prev.filter(pro => pro.name !== name));
   };
 
+  const reset=()=>{
+    setAddedProduct([]);
+  }
+
   return (
-    <CartContextProvider value={{add, remove, addedProduct}}>
-    <div className='w-[80%] pt-15 mx-auto flex gap-7'>
-      <div className='w-[70%]'>
+    <CartContextProvider value={{add, remove, addedProduct, reset}}>
+    <div className='w-[80%] pt-15 pb-25 mx-auto sm:flex gap-7'>
+      <div className='md:w-[70%] sm:w-[50%] w-full mb-10 sm:mb-0'>
       <ProductList/>
       </div>
-      <div className='w-[30%]'>
+      <div className='md:w-[30%] sm:w-[50%] w-full'>
       <Cart/>
       </div>
     </div>

@@ -4,7 +4,7 @@ import useCartStore from '../../context/CartContext';
 import decrement from '../../../assets/images/icon-decrement-quantity.svg';
 import increment from '../../../assets/images/icon-increment-quantity.svg';
 
-  const Product = ({image, price, category, name,}) => {
+  const Product = ({image, price, category, name, thumbnail, productdetail}) => {
     const {add, remove, addedProduct} = useCartStore();
     const product = addedProduct.find((pro)=> pro.name ===  name);
     const [showCounter, setShowCounter]= useState(true);
@@ -12,13 +12,13 @@ import increment from '../../../assets/images/icon-increment-quantity.svg';
 
 
     const showButton=()=>{
-      add(name, price, 'increase');
+      add(name, price,productdetail, 'increase');
       setShowCounter(false);
     }
 
     const decrease =()=>{
       if(counter > 1){
-        add(name, price, 'decrease');
+        add(name, price, productdetail, 'decrease');
       }else if (counter === 1){
         remove(name);
         setShowCounter(true);
@@ -33,7 +33,7 @@ import increment from '../../../assets/images/icon-increment-quantity.svg';
   return (
     <div>
       <div className='relative'>
-      <img src={image} alt="image" className='h-[13.75rem] relative w-full rounded-2xl mb-7 object-cover'/>
+      <img src={image} alt="image" className={`h-[13.75rem] relative w-full rounded-2xl mb-7 object-cover ${!showCounter ? 'ring-2 ring-[#c73a0f]': ''} `}/>
       {
         showCounter ? 
       <button onClick={showButton} className='flex items-center justify-center gap-2 absolute bg-white left-1/2 -translate-x-1/2 -bottom-4 border border-amber-900 px-6 py-2 rounded-3xl w-[60%]'>

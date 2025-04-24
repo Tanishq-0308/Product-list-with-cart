@@ -10,7 +10,7 @@ const Cart = () => {
   const [empty, setEmpty] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
-
+  const [confirmOrder, setConfirmOrder]= useState(false);
 
   useEffect(() => {
     if (addedProduct.length == 0) {
@@ -35,6 +35,11 @@ const Cart = () => {
 
   }, [addedProduct]);
 
+  const handleOrder=()=>{
+    if(confirmOrder){
+      setConfirmOrder(false);
+    }
+  }
 
   return (
     <>
@@ -50,7 +55,7 @@ const Cart = () => {
       ) : (
         <>
           {addedProduct.map((prod) => (
-            <>
+            <div key={prod.name}>
               <div className="flex justify-between items-center py-5">
                 <div>
                   <h1 className="mb-1.5 font-rht-semibold text-[#260f08]">
@@ -77,7 +82,7 @@ const Cart = () => {
                 </div>
               </div>
               <hr className="text-[#6b595744]" />
-            </>
+            </div>
           ))}
           <div className="flex justify-between mt-7">
             <p className="">Order Total</p>
@@ -88,13 +93,15 @@ const Cart = () => {
               <p>This is a <span className="font-rht-semibold">carbon-neutral</span> delivery.
             </p>
           </div>
-          <div className="bg-[#c73a0f] text-white p-3 rounded-3xl mt-7 flex items-center justify-center">
+          <div onClick={()=>setConfirmOrder(true)} className="bg-[#c73a0f] text-white p-3 rounded-3xl mt-7 flex items-center justify-center">
             <button>Confirm Order</button>
           </div>
         </>
       )}
     </div>
-    <ConfirmCard product={addedProduct} amount={totalAmount}/>
+    {
+      confirmOrder && <ConfirmCard product={addedProduct} amount={totalAmount} handleOrder={handleOrder}/>
+    }
       </>
   );
 };

@@ -3,7 +3,8 @@ import { createContext, useContext } from "react";
 export const CartContext= createContext({
     addedProduct:[],
     add:()=>{},
-    remove:()=>{}
+    remove:()=>{},
+    reset:()=>{}
 });
 
 export const CartContextProvider=CartContext.Provider;
